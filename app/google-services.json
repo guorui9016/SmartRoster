@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "469832038000",
+    "firebase_url": "https://smart-roster.firebaseio.com",
+    "project_id": "smart-roster",
+    "storage_bucket": "smart-roster.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469832038000:android:8007ff116b35d95c4966b5",
+        "android_client_info": {
+          "package_name": "com.gr.smartroster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469832038000-bqcv9prsb6ricq13ki5lp5ejj4cvdql5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gr.smartroster",
+            "certificate_hash": "a7cd8d14ab8b13762aeacfaa5ce1ca1f04f66dd1"
+          }
+        },
+        {
+          "client_id": "469832038000-buc9pd800p6fib66gfi96connf50loiu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqkZfsoVB2iGlU9oxO-sWsOB3CevHdJls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469832038000-buc9pd800p6fib66gfi96connf50loiu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
