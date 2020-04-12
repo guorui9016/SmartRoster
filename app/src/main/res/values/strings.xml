@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">SmartRoster</string>
+    <string name="smart_roster">Smart Roster</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="longin_title">Smart Roster - Login</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="title_activity_register">Register</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="register_title">Smart Roster - Register</string>
+    <string name="login_invalid_message">Please check your user name or password.</string>
+    <string name="login_successful_message">Login in successful.</string>
+    <string name="firebase_database_error_message">Failed to get data from database</string>
+    <string name="register_adduser_succ">Add user successful</string>
+    <string name="register_user_exist_message">User name is existed</string>
+    <string name="register_password_info_message">Password length is (6-20).\nPassword must contain letters and special character.\nAt least 1 uper letter, 1 lower letter and 1 special character.</string>
+    <string name="register_password_nomatch_message">Two passwords are not match.</string>
+    <string name="register_username_info_message">User length is (6-16)\nUser name must not contain special charcter except \"_\".\nFirst letter must a letter.</string>
 </resources>
