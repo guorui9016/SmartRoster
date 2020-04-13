@@ -21,7 +21,7 @@ import com.gr.smartroster.model.User;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText etUserName, etPassword, etComfPasswrod;
+    EditText etUserId, etFullName, etPassword, etComfPasswrod;
     Button btnRegiest;
     TextView tvInfo;
 
@@ -37,20 +37,21 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegiest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String userName = etUserName.getText().toString().trim();
+                final String uerId = etUserId.getText().toString().trim();
+                final String fullName = etFullName.getText().toString().trim();
                 final String psd = etPassword.getText().toString().trim();
                 String comfPsd = etComfPasswrod.getText().toString().trim();
 
                 //check user name and passpword
-                if (checkUserInfo(userName, psd, comfPsd)) {
+                if (checkUserInfo(uerId, psd, comfPsd)) {
                     Log.i("Ray - ", "onClick: The user info are correct");
                     btnRegiest.setEnabled(false);
                     tableUser.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (!dataSnapshot.child(userName).exists()) {  //User name is exist or not.
-                                User user = new User(psd);
-                                tableUser.child(userName).setValue(user);
+                            if (!dataSnapshot.child(uerId).exists()) {  //User name is exist or not.
+                                User user = new User(psd, fullName);
+                                tableUser.child(uerId).setValue(user);
                                 Toast.makeText(RegisterActivity.this, R.string.register_adduser_succ, Toast.LENGTH_SHORT).show();
                                 Log.i("Ray - ", "onDataChange: Write data to database");
                                 finish();
@@ -73,12 +74,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private boolean checkUserInfo(String userName, String psd, String comfPsd) {
+    private boolean checkUserInfo(String userId, String psd, String comfPsd) {
         //user name inculde 6-16 letter, number and "_". First one must be a letter.
         Pattern pattern_name = Pattern.compile("[a-zA-Z]{1}[a-zA-Z0-9_]{5,15}");
         //password inculde 6-20 letter, number and symbol. At least 1 Cap letter, 1 little letter and 1 symbol.
         Pattern pattern_psd = Pattern.compile("[a-zA-Z0-9]{1,16}");
-        if (pattern_name.matcher(userName).matches()) {     //check user name
+        if (pattern_name.matcher(userId).matches()) {     //check user name
             if (psd.equals(comfPsd)) {      //check the two passowrd is match or not
                 if (pattern_psd.matcher(psd).matches()) {       //check the password
                     return true;
@@ -97,7 +98,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initActivity() {
-        etUserName = findViewById(R.id.etUserName_Reg);
+        etUserId = findViewById(R.id.etUserID_Reg);
+        etFullName = findViewById(R.id.etFullName_Reg);
         etPassword = findViewById(R.id.etPassword_Reg);
         etComfPasswrod = findViewById(R.id.etComfPassword_Reg);
         btnRegiest = findViewById(R.id.btnRegister_Reg);

@@ -27,13 +27,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/user_name" />
+            android:text="@string/full_name" />
 
         <EditText
             android:id="@+id/etUserName_Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/user_name"
+            android:hint="@string/full_name"
             android:text="guorui9016"/>
 
         <TextView

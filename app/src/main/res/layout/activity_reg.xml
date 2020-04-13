@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="15dp   ">
+        android:padding="15dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,19 +21,32 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="User ID: (6-16 letter, number or '_')" />
+
+        <EditText
+            android:id="@+id/etUserID_Reg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user_id" />
+
 
         <TextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/user_name" />
+            android:text="@string/full_name" />
 
         <EditText
-            android:id="@+id/etUserName_Reg"
+            android:id="@+id/etFullName_Reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/user_name" />
+            android:hint="@string/full_name" />
 
         <TextView
             android:layout_width="wrap_content"
