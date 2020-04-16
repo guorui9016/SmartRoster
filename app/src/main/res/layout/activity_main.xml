@@ -53,5 +53,14 @@
             android:text="@string/register"
             android:textColor="@android:color/white"
             android:background="@color/btnRegister"/>
+
+        <Button
+            android:onClick="test"
+            android:layout_marginTop="20dp"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Firestore load Test"
+            android:textColor="@android:color/black"
+            android:background="@android:color/white"/>
     </LinearLayout>
 </LinearLayout>

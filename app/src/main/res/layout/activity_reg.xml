@@ -26,13 +26,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="User ID: (6-16 letter, number or '_')" />
+            android:text="@string/email" />
 
         <EditText
-            android:id="@+id/etUserID_Reg"
+            android:id="@+id/etEmail_Reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/user_id" />
+            android:hint="@string/email"
+            android:text="guorui@gmail.com"/>
 
 
         <TextView
@@ -46,7 +47,8 @@
             android:id="@+id/etFullName_Reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/full_name" />
+            android:hint="@string/full_name"
+            android:text="Rui Guo"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,7 +60,8 @@
             android:id="@+id/etPassword_Reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password" />
+            android:hint="@string/password"
+            android:text="Password"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,11 +69,13 @@
             android:layout_marginTop="20dp"
             android:text="@string/confirm_password" />
 
+
         <EditText
             android:id="@+id/etComfPassword_Reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/confirm_password"/>
+            android:hint="@string/confirm_password"
+            android:text="Password"/>
 
         <TextView
             android:id="@+id/tvInfo_Reg"
