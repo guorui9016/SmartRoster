@@ -15,7 +15,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
 import com.gr.smartroster.R;
+import com.gr.smartroster.model.Staff;
 import com.gr.smartroster.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,27 +51,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test(View view) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").whereEqualTo("email", "john@gmail.com")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            if (task.getResult().isEmpty()) {
-                            }
-                            for (QueryDocumentSnapshot doc : task.getResult()) {
-                                User user = doc.toObject(User.class);
-                                Toast.makeText(MainActivity.this, "This is the test message. load " + user.getEmail() + "from database", Toast.LENGTH_SHORT).show();
-                                Log.d("Ray - ", "onComplete: " + user.getFullName());
-                                Log.d("Ray - ", "onComplete: " + user.getEmail());
-                                Log.d("Ray - ", "onComplete: " + user.getPhoneNumber());
-                                Log.d("Ray - ", "onComplete: " + user.getPassword());
-                            }
-                        } else {
-                            Log.w("Ray - ", "onComplete: Error geting document" + task.getException());
-                        }
-                    }
-                });
+        Staff staff = new Staff();
+        staff.setAdmin("123");
+        staff.setCompany("Home");
+        staff.setContractType("Parttime");
+        staff.setEmail("Guorui9016@gmail.com");
+        staff.setGroupName("Great");
+
+        Intent intent = new Intent(this, TestActivity.class);
+        intent.putExtra("staff", new Gson().toJson(staff));
+        Log.i("Ray - ", "test: " + staff.toString());
+        startActivity(intent);
     }
 }

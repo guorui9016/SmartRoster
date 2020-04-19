@@ -1,10 +1,10 @@
 package com.gr.smartroster.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -12,6 +12,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.gr.smartroster.R;
 import com.gr.smartroster.model.Staff;
+import com.gr.smartroster.model.User;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -21,14 +22,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class OverViewActivity extends AppCompatActivity {
+public class DashBoardActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView tvName_Nav_Header, tvCompanyGroupName_Nav_Header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_over_view);
+        setContentView(R.layout.activity_dashboard);
+
+        //init custom data
+        initMyData();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -50,21 +56,21 @@ public class OverViewActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
 
-        //get data
-        Intent intent = getIntent();
-        String JsonData = intent.getStringExtra("staff");
-        Staff staff = new Gson().fromJson(JsonData,Staff.class);
+    private void initMyData() {
+        //init widget
+        tvName_Nav_Header = findViewById(R.id.tvName_Nav_Header);
+        tvCompanyGroupName_Nav_Header = findViewById(R.id.tvCompanyGroupName_Nav_Header);
 
-        Log.i("Ray - ", "onCreate: get staff information from last activity");
-        Log.i("Ray - ", "onCreate: " + staff);
-
+/*        tvName_Nav_Header.setText(email);
+        tvCompanyGroupName_Nav_Header.setText(string);*/
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.over_view, menu);
+        getMenuInflater().inflate(R.menu.dash_board, menu);
         return true;
     }
 

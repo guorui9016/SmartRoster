@@ -57,4 +57,15 @@ public class Staff {
     public void setAdmin(String admin) {
         this.admin = admin;
     }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "email='" + email + '\'' +
+                ", groupName='" + groupName + '\'' +
+                ", contractType='" + contractType + '\'' +
+                ", company='" + company + '\'' +
+                ", admin='" + admin + '\'' +
+                '}';
+    }
 }

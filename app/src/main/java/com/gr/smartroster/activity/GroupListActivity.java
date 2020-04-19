@@ -9,9 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +19,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 import com.gr.smartroster.R;
+import com.gr.smartroster.adapter.GroupListViewAdapter;
 import com.gr.smartroster.model.Staff;
+import com.gr.smartroster.util.ConstantUtil;
+import com.gr.smartroster.util.SpUtil;
+
 import java.util.List;
 
 public class GroupListActivity extends AppCompatActivity {
@@ -38,8 +40,8 @@ public class GroupListActivity extends AppCompatActivity {
             if (list.size() == 1) {
                 //jump to the next page "home page"
                 Staff staff = list.get(0);
-                Intent intent = new Intent(GroupListActivity.this, OverViewActivity.class);
-                intent.putExtra("staff", new Gson().toJson(staff));
+                saveDataToSp(staff);
+                Intent intent = new Intent(GroupListActivity.this, DashBoardActivity.class);
                 startActivity(intent);
             } else {
                 //show the group list
@@ -68,20 +70,19 @@ public class GroupListActivity extends AppCompatActivity {
     private void initView() {
         //init item view
         groupList = findViewById(R.id.groupList);
-        groupList.setAdapter(new GourpListViewAdpter());
+        groupList.setAdapter(new GroupListViewAdapter(list, GroupListActivity.this));
 
         groupList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Jump to the home page.
                 Staff staff = list.get(position);
-                Intent intent = new Intent(GroupListActivity.this, OverViewActivity.class);
-                intent.putExtra("staff", new Gson().toJson(staff));
+                saveDataToSp(staff);
+                Intent intent = new Intent(GroupListActivity.this, DashBoardActivity.class);
                 startActivity(intent);
             }
         });
     }
-
 
     private void initdata() {
         //get email from login page
@@ -117,39 +118,12 @@ public class GroupListActivity extends AppCompatActivity {
         });
     }
 
-    private class GourpListViewAdpter extends BaseAdapter {
-        @Override
-        public int getCount() {
-            return list.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = null;
-            if (convertView == null) {
-                view = View.inflate(GroupListActivity.this, R.layout.item_group, null);
-            } else {
-                view = convertView;
-            }
-
-            TextView groupName = view.findViewById(R.id.tvGroupName_group);
-            TextView company = view.findViewById(R.id.tvCompany_group);
-
-            groupName.setText(list.get(position).getGroupName());
-            company.append(list.get(position).getCompany());
-
-            return view;
-        }
+    private void saveDataToSp(Staff staff) {
+        Log.i("Ray - ", "saveDataToSp: Save user information");
+        SpUtil.set(getApplicationContext(), ConstantUtil.EMAIL, staff.getEmail());
+        SpUtil.set(getApplicationContext(),ConstantUtil.GROUPNAME, staff.getGroupName());
+        SpUtil.set(getApplicationContext(),ConstantUtil.COMPANY, staff.getCompany());
+        SpUtil.set(getApplicationContext(),ConstantUtil.ADMIN, staff.getAdmin());
     }
 }
 
