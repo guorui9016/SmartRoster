@@ -43,8 +43,8 @@ public class HomeViewModel extends AndroidViewModel implements IRosterCallbackLi
     private void getRoster() {
         Log.i("Ray - ", "getRoster: Start connect db to get data");
 
-        String email = (String) SpUtil.get(getApplication(), ConstantUtil.EMAIL,"");
-        String groupName = (String) SpUtil.get(getApplication(),ConstantUtil.GROUPNAME,"");
+        String email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL,"");
+        String groupName = (String) SpUtil.get(getApplication().getApplicationContext(),ConstantUtil.GROUPNAME,"");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("roster")

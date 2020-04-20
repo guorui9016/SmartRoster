@@ -30,7 +30,6 @@ public class AvaliableTimeRecycerViewAdapter extends RecyclerView.Adapter<Avalia
     public MyAViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         MyAViewHolder viewHolder =
                 new MyAViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_avaliabletime, parent, false));
-
         return viewHolder;
     }
 
@@ -56,7 +55,6 @@ public class AvaliableTimeRecycerViewAdapter extends RecyclerView.Adapter<Avalia
         TextView tvDate_avaliabletime;
         TextView tvTime_avaliabletime;
         TextView tvCompany_avaliabletime;
-
 
         public MyAViewHolder(@NonNull View itemView) {
             super(itemView);
