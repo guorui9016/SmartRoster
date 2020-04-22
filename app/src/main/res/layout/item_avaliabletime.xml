@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="15dp"
-    android:layout_margin="5dp">
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp">
 
-    <TextView
-        android:id="@+id/tvDate_avaliabletime_item"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#eee"
-        android:padding="6dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textAlignment="center"
-        android:text="Date: "/>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTime_avaliabletime_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:text="Avaliable Time:   "/>
+        <TextView
+            android:id="@+id/tvDate_avaliabletime_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eee"
+            android:padding="6dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:text="Date: "/>
+
+        <TextView
+            android:id="@+id/tvTime_avaliabletime_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:text="Avaliable Time:   "/>
 
 
-    <TextView
-        android:id="@+id/tvCompany_avaliabletime_itme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:textStyle="italic"
-        android:text="Company: " />
+        <TextView
+            android:id="@+id/tvCompany_avaliabletime_itme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textStyle="italic"
+            android:text="Company: " />
 
-</LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

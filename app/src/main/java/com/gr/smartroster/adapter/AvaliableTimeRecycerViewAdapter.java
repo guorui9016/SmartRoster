@@ -21,8 +21,13 @@ import java.util.List;
 public class AvaliableTimeRecycerViewAdapter extends RecyclerView.Adapter<AvaliableTimeRecycerViewAdapter.MyAViewHolder> {
     List<AvaliableTime> avaliableTimesList;
 
-    public AvaliableTimeRecycerViewAdapter(List<AvaliableTime> avaliableTimesList) {
+/*    public AvaliableTimeRecycerViewAdapter(List<AvaliableTime> avaliableTimesList) {
         this.avaliableTimesList = avaliableTimesList;
+    }*/
+
+    public void setAvaliableTimesList(List<AvaliableTime> avaliableTimesList) {
+        this.avaliableTimesList = avaliableTimesList;
+        notifyDataSetChanged();
     }
 
     @NonNull

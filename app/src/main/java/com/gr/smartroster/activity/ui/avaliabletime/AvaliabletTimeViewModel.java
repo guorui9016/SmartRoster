@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.gr.smartroster.callback.IAvaliableTimeCallBackLister;
 import com.gr.smartroster.model.AvaliableTime;
+import com.gr.smartroster.util.ConstantUtil;
 import com.gr.smartroster.util.SpUtil;
 import java.util.List;
 
@@ -38,10 +39,12 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
 
     private void getAvaliableTime() {
         Log.i("Ray", "getAvaliableTime: Start load avaliable time data from db");
-        String email = (String) SpUtil.get(getApplication().getApplicationContext(), "email", "");
+        String email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL_SP, "");
+        String groupName = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.GROUPNAME_SP,"");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("avaliableTime")
-                .whereEqualTo("email", email)
+                .whereEqualTo(ConstantUtil.EMAIL_SP, email)
+                .whereEqualTo(ConstantUtil.GROUPNAME_SP, groupName)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

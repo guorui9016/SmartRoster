@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.gson.Gson;
 import com.gr.smartroster.R;
 import com.gr.smartroster.adapter.GroupListViewAdapter;
 import com.gr.smartroster.model.Staff;
@@ -120,10 +119,10 @@ public class GroupListActivity extends AppCompatActivity {
 
     private void saveDataToSp(Staff staff) {
         Log.i("Ray - ", "saveDataToSp: Save user information");
-        SpUtil.set(getApplicationContext(), ConstantUtil.EMAIL, staff.getEmail());
-        SpUtil.set(getApplicationContext(),ConstantUtil.GROUPNAME, staff.getGroupName());
-        SpUtil.set(getApplicationContext(),ConstantUtil.COMPANY, staff.getCompany());
-        SpUtil.set(getApplicationContext(),ConstantUtil.ADMIN, staff.getAdmin());
+        SpUtil.set(getApplicationContext(), ConstantUtil.EMAIL_SP, staff.getEmail());
+        SpUtil.set(getApplicationContext(),ConstantUtil.GROUPNAME_SP, staff.getGroupName());
+        SpUtil.set(getApplicationContext(),ConstantUtil.COMPANY_SP, staff.getCompany());
+        SpUtil.set(getApplicationContext(),ConstantUtil.ADMIN_SP, staff.getAdmin());
     }
 }
 
