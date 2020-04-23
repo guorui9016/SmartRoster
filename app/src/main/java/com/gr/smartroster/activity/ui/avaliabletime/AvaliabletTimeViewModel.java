@@ -1,13 +1,18 @@
 package com.gr.smartroster.activity.ui.avaliabletime;
 
 import android.app.Application;
+import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.gr.smartroster.callback.IAvaliableTimeCallBackLister;
@@ -21,10 +26,17 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
     private MutableLiveData<List<AvaliableTime>> avaliableTimeLiveDataList;
     private MutableLiveData<String> errorMessage;
     private IAvaliableTimeCallBackLister avaliableTimeCallBackLister;
+    private List<AvaliableTime> mAvaliableTimeList = null;
+    String email, groupName, company;
+    CollectionReference mCollectionRef = FirebaseFirestore.getInstance().collection("avaliableTime");
+
 
     public AvaliabletTimeViewModel(@NonNull Application application) {
         super(application);
         avaliableTimeCallBackLister = this;
+        email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL_SP, "");
+        groupName = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.GROUPNAME_SP,"");
+        company = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.COMPANY_SP,"");
     }
 
     public MutableLiveData<List<AvaliableTime>> getAvaliableTimeLiveDataList() {
@@ -37,13 +49,28 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
         return avaliableTimeLiveDataList;
     }
 
+    public void insertAvaliableTime(Bundle time) {
+        Log.i("Ray", "insertAvaliableTime: Start ");
+        //insert data to db
+        Timestamp date = (Timestamp) time.get(ConstantUtil.TIMESTAMP_DATE);
+        Timestamp startTime = (Timestamp) time.get(ConstantUtil.TIMESTAMP_START_TIME);
+        Timestamp endTime = (Timestamp) time.get(ConstantUtil.TIMESTAMP_END_TIME);
+        DocumentReference documentReference = mCollectionRef.document();
+        AvaliableTime avaliableTime
+                = new AvaliableTime(groupName,company,email,date,startTime,endTime,documentReference.getId());
+        documentReference.set(avaliableTime).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                mAvaliableTimeList.add(avaliableTime);
+                getAvaliableTimeLiveDataList().setValue(mAvaliableTimeList);
+            }
+        });
+    }
+
     private void getAvaliableTime() {
         Log.i("Ray", "getAvaliableTime: Start load avaliable time data from db");
-        String email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL_SP, "");
-        String groupName = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.GROUPNAME_SP,"");
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("avaliableTime")
-                .whereEqualTo(ConstantUtil.EMAIL_SP, email)
+        //get all data from db
+                mCollectionRef.whereEqualTo(ConstantUtil.EMAIL_SP, email)
                 .whereEqualTo(ConstantUtil.GROUPNAME_SP, groupName)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -51,7 +78,7 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
                 if (task.isSuccessful()) {
                     List<AvaliableTime> tempList = task.getResult().toObjects(AvaliableTime.class);
                     if (!tempList.isEmpty()) {
-                        avaliableTimeCallBackLister.OnAvaliableTimeLoadSuccessful(tempList);
+                        avaliableTimeCallBackLister.OnAvaliableTimeSuccessful(mAvaliableTimeList = tempList);
                     } else {
                         avaliableTimeCallBackLister.OnAvaliableTimeLoadFailed("No Avaliable Time");
                     }
@@ -67,8 +94,10 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
         });
     }
 
+
+
     @Override
-    public void OnAvaliableTimeLoadSuccessful(List<AvaliableTime> avaliableTimeList) {
+    public void OnAvaliableTimeSuccessful(List<AvaliableTime> avaliableTimeList) {
         avaliableTimeLiveDataList.setValue(avaliableTimeList);
     }
 

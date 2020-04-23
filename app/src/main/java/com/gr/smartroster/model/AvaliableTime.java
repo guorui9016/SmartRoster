@@ -9,17 +9,19 @@ public class AvaliableTime {
     private Timestamp date;
     private Timestamp startTime;
     private Timestamp endTime;
+    private String docID;
 
     public AvaliableTime() {
     }
 
-    public AvaliableTime(String groupName, String company, String email, Timestamp date, Timestamp startTime, Timestamp endTime) {
+    public AvaliableTime(String groupName, String company, String email, Timestamp date, Timestamp startTime, Timestamp endTime, String docID) {
         this.groupName = groupName;
         this.company = company;
         this.email = email;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.docID = docID;
     }
 
     public String getGroupName() {
@@ -68,5 +70,13 @@ public class AvaliableTime {
 
     public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
+    }
+
+    public String getDocID() {
+        return docID;
+    }
+
+    public void setDocID(String docID) {
+        this.docID = docID;
     }
 }
