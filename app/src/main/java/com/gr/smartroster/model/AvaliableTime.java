@@ -2,7 +2,9 @@ package com.gr.smartroster.model;
 
 import com.google.firebase.Timestamp;
 
-public class AvaliableTime {
+import java.util.Comparator;
+
+public class AvaliableTime implements Comparable<AvaliableTime> {
     private String groupName;
     private String company;
     private String email;
@@ -78,5 +80,10 @@ public class AvaliableTime {
 
     public void setDocID(String docID) {
         this.docID = docID;
+    }
+
+    @Override
+    public int compareTo(AvaliableTime o) {
+        return this.startTime.compareTo(o.startTime);
     }
 }

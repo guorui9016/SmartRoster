@@ -1,8 +1,8 @@
 package com.gr.smartroster.activity.ui.avaliabletime;
 
 import android.app.Application;
-import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
@@ -19,6 +19,8 @@ import com.gr.smartroster.callback.IAvaliableTimeCallBackLister;
 import com.gr.smartroster.model.AvaliableTime;
 import com.gr.smartroster.util.ConstantUtil;
 import com.gr.smartroster.util.SpUtil;
+
+import java.util.Collections;
 import java.util.List;
 
 public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvaliableTimeCallBackLister {
@@ -49,35 +51,79 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
         return avaliableTimeLiveDataList;
     }
 
-    public void insertAvaliableTime(Bundle time) {
-        Log.i("Ray", "insertAvaliableTime: Start ");
+    public AvaliableTime getAvaliableTime(int position) {
+        return mAvaliableTimeList.get(position);
+    }
+
+    public void insertAvaliableTime(AvaliableTime avaliableTime)  {
+        Log.i("Ray", "insertAvaliableTime: Start intsert a new time");
         //insert data to db
-        Timestamp date = (Timestamp) time.get(ConstantUtil.TIMESTAMP_DATE);
-        Timestamp startTime = (Timestamp) time.get(ConstantUtil.TIMESTAMP_START_TIME);
-        Timestamp endTime = (Timestamp) time.get(ConstantUtil.TIMESTAMP_END_TIME);
+        avaliableTime.setEmail(email);
+        avaliableTime.setCompany(company);
+        avaliableTime.setGroupName(groupName);
         DocumentReference documentReference = mCollectionRef.document();
-        AvaliableTime avaliableTime
-                = new AvaliableTime(groupName,company,email,date,startTime,endTime,documentReference.getId());
+        avaliableTime.setDocID(documentReference.getId());
         documentReference.set(avaliableTime).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 mAvaliableTimeList.add(avaliableTime);
-                getAvaliableTimeLiveDataList().setValue(mAvaliableTimeList);
+                Collections.sort(mAvaliableTimeList);
+                OnAvaliableTimeSuccessful(mAvaliableTimeList);
+                Log.i("Ray", "insertAvaliableTime: new time has been add");
             }
         });
+    }
+
+    public void updateAvaliableTime(AvaliableTime avaliableTime) {
+
+        mCollectionRef.document(avaliableTime.getDocID()).set(avaliableTime).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                for (int i = 0; i < mAvaliableTimeList.size() ; i++) {
+                    if (avaliableTime.getDocID().equals(mAvaliableTimeList.get(i).getDocID())) {
+                        mAvaliableTimeList.set(i, avaliableTime);
+                        Log.i("Ray - ", "onSuccess: The time has been update");
+                        break;
+                    }
+                }
+                Collections.sort(mAvaliableTimeList);
+                OnAvaliableTimeSuccessful(mAvaliableTimeList);
+            }
+        });
+    }
+
+    public void deleteAvaliableTime(int position) {
+        Log.i("Ray - ", "deleteAvaliableTime: Start delete a time");
+        AvaliableTime avaliableTime = mAvaliableTimeList.get(position);
+        mCollectionRef.document(avaliableTime.getDocID()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                mAvaliableTimeList.remove(position);
+                OnAvaliableTimeSuccessful(mAvaliableTimeList);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplication(), "Error occured when delete the time.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void getAvaliableTime() {
         Log.i("Ray", "getAvaliableTime: Start load avaliable time data from db");
         //get all data from db
-                mCollectionRef.whereEqualTo(ConstantUtil.EMAIL_SP, email)
+                mCollectionRef
+                .whereEqualTo(ConstantUtil.EMAIL_SP, email)
                 .whereEqualTo(ConstantUtil.GROUPNAME_SP, groupName)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     List<AvaliableTime> tempList = task.getResult().toObjects(AvaliableTime.class);
-                    if (!tempList.isEmpty()) {
+                    Log.i("Ray - ", "onComplete: the size of avalibaletime list is: " + tempList.size());
+                    if (tempList.size()>0) {
+                        Collections.sort(tempList);
                         avaliableTimeCallBackLister.OnAvaliableTimeSuccessful(mAvaliableTimeList = tempList);
                     } else {
                         avaliableTimeCallBackLister.OnAvaliableTimeLoadFailed("No Avaliable Time");
@@ -93,8 +139,6 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
             }
         });
     }
-
-
 
     @Override
     public void OnAvaliableTimeSuccessful(List<AvaliableTime> avaliableTimeList) {

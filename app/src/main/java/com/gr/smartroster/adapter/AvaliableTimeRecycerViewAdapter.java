@@ -1,6 +1,5 @@
 package com.gr.smartroster.adapter;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +9,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gr.smartroster.R;
+import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
 import com.gr.smartroster.model.AvaliableTime;
 
-import org.w3c.dom.Text;
-
 import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class AvaliableTimeRecycerViewAdapter extends RecyclerView.Adapter<AvaliableTimeRecycerViewAdapter.MyAViewHolder> {
     List<AvaliableTime> avaliableTimesList;
+    IRecyclerViewItemClickInterface iRecyclerViewItemClickInterface;
 
-/*    public AvaliableTimeRecycerViewAdapter(List<AvaliableTime> avaliableTimesList) {
-        this.avaliableTimesList = avaliableTimesList;
-    }*/
+
+    public AvaliableTimeRecycerViewAdapter(IRecyclerViewItemClickInterface clickInterface) {
+        this.iRecyclerViewItemClickInterface = clickInterface;
+    }
 
     public void setAvaliableTimesList(List<AvaliableTime> avaliableTimesList) {
         this.avaliableTimesList = avaliableTimesList;
@@ -41,14 +41,16 @@ public class AvaliableTimeRecycerViewAdapter extends RecyclerView.Adapter<Avalia
     @Override
     public void onBindViewHolder(@NonNull MyAViewHolder holder, int position) {
         AvaliableTime avaliableTime = avaliableTimesList.get(position);
-        String date = DateFormat.getDateInstance().format(avaliableTime.getDate().toDate());
-        String startTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(avaliableTime.getStartTime().toDate());
-        String endTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(avaliableTime.getEndTime().toDate());
-        String time = startTime + " -- " + endTime;
+        DateFormat dateFormat  = DateFormat.getInstance();
+        dateFormat.setTimeZone(TimeZone.getDefault());
+        String date = dateFormat.getDateInstance().format(avaliableTime.getDate().toDate());
+        String startTime = dateFormat.getTimeInstance(DateFormat.SHORT).format(avaliableTime.getStartTime().toDate());
+        String endTime = dateFormat.getTimeInstance(DateFormat.SHORT).format(avaliableTime.getEndTime().toDate());
+        String time = "Avaliable Time: " +  startTime + " -- " + endTime;
 
         holder.tvDate_avaliabletime.setText(date);
-        holder.tvTime_avaliabletime.append(time);
-        holder.tvCompany_avaliabletime.append(avaliableTime.getCompany());
+        holder.tvTime_avaliabletime.setText(time);
+        holder.tvCompany_avaliabletime.setText("Company: " +avaliableTime.getCompany());
     }
 
     @Override
@@ -66,6 +68,14 @@ public class AvaliableTimeRecycerViewAdapter extends RecyclerView.Adapter<Avalia
             tvDate_avaliabletime = itemView.findViewById(R.id.tvDate_avaliabletime_item);
             tvTime_avaliabletime = itemView.findViewById(R.id.tvTime_avaliabletime_item);
             tvCompany_avaliabletime = itemView.findViewById(R.id.tvCompany_avaliabletime_itme);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    iRecyclerViewItemClickInterface.onItemLongClick(getAdapterPosition());
+                    return true;
+                }
+            });
         }
     }
 }

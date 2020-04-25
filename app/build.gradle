@@ -43,4 +43,5 @@ dependencies {
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.2'
 }
