@@ -24,6 +24,8 @@
         android:textSize="17dp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
+        android:ellipsize="end"
+        android:lines="1"
         android:text="Company: " />
 
 </LinearLayout>

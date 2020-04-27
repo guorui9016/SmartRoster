@@ -10,7 +10,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -125,8 +124,6 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
                     if (tempList.size()>0) {
                         Collections.sort(tempList);
                         avaliableTimeCallBackLister.OnAvaliableTimeSuccessful(mAvaliableTimeList = tempList);
-                    } else {
-                        avaliableTimeCallBackLister.OnAvaliableTimeLoadFailed("No Avaliable Time");
                     }
                 } else {
                     avaliableTimeCallBackLister.OnAvaliableTimeLoadFailed("Load data error");

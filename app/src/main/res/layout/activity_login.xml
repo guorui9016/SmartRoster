@@ -5,6 +5,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -54,14 +55,29 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/holo_red_light"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="invisible"/>
     </LinearLayout>
 
     <Button
         android:id="@+id/btnLogin_Login"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:layout_alignParentBottom="true"
-        />
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/login" />
+
+    <Button
+        android:id="@+id/btnRegister_Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/btnLogin_Login"
+        android:visibility="invisible"
+        android:text="Register"/>
+
+
+
 </RelativeLayout>

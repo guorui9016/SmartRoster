@@ -12,7 +12,7 @@ import com.gr.smartroster.model.Roster;
 import java.text.DateFormat;
 import java.util.List;
 
-public class RosterRecycerViewAdapter extends RecyclerView.Adapter<RosterRecycerViewAdapter.MyViewHolder> {
+public class RosterRecycerViewAdapter extends RecyclerView.Adapter<RosterRecycerViewAdapter.RosterViewHolder> {
     private List<Roster> rosterList;
 
     public RosterRecycerViewAdapter(List<Roster> rosterList) {
@@ -21,14 +21,14 @@ public class RosterRecycerViewAdapter extends RecyclerView.Adapter<RosterRecycer
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        MyViewHolder myViewHolder =
-                new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_roster, parent,false));
+    public RosterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        RosterViewHolder myViewHolder =
+                new RosterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_roster, parent,false));
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RosterViewHolder holder, int position) {
         Roster roster = rosterList.get(position);
         String date = DateFormat.getDateInstance().format(roster.getDate().toDate());
         String startTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(roster.getStartTime().toDate());
@@ -45,13 +45,13 @@ public class RosterRecycerViewAdapter extends RecyclerView.Adapter<RosterRecycer
         return rosterList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class RosterViewHolder extends RecyclerView.ViewHolder {
         public TextView tvDate_roster;
         public TextView tvTime_roster;
         public TextView tvCompany_roster;
         public TextView tvRole_roster;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public RosterViewHolder(@NonNull View itemView) {
             super(itemView);
             tvDate_roster = itemView.findViewById(R.id.tvDate_roster_item);
             tvTime_roster = itemView.findViewById(R.id.tvTime_roster_item);

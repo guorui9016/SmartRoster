@@ -44,7 +44,7 @@ public class AvaliableTimeFragment extends Fragment implements IRecyclerViewItem
     private FloatingActionButton fabAddAvaliableTime;
     private int mYear, mMonth, mDay;
     private Calendar selectCal, tempCal;
-    AvaliableTimeRecycerViewAdapter adapter;
+    private AvaliableTimeRecycerViewAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         avaliabletTimeViewModel = ViewModelProviders.of(this).get(AvaliabletTimeViewModel.class);

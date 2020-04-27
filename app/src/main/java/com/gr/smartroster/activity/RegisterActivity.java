@@ -1,5 +1,6 @@
 package com.gr.smartroster.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +32,7 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText etEmail, etFullName, etPassword, etComfPasswrod;
-    Button btnRegiest;
+    Button btnRegiest, btnLog;
     TextView tvInfo;
     FirebaseFirestore db;
 
@@ -78,6 +79,9 @@ public class RegisterActivity extends AppCompatActivity {
                                                         public void onSuccess(DocumentReference documentReference) {
                                                             Log.i("Ray - ", "onSuccess: " + "documnet ID is: " + documentReference.getId());
                                                             Toast.makeText(RegisterActivity.this, "Register successful!", Toast.LENGTH_SHORT).show();
+                                                            tvInfo.setText("Register successful! \n Login now?");
+                                                            btnRegiest.setVisibility(View.INVISIBLE);
+                                                            btnLog.setVisibility(View.VISIBLE);
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
@@ -105,7 +109,18 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
+
+
 
     private boolean checkUserInfo(String email, String psd, String comfPsd) {
         //user name inculde 6-16 letter, number and "_". First one must be a letter.
@@ -140,5 +155,14 @@ public class RegisterActivity extends AppCompatActivity {
         etComfPasswrod = findViewById(R.id.etComfPassword_Reg);
         btnRegiest = findViewById(R.id.btnRegister_Reg);
         tvInfo = findViewById(R.id.tvInfo_Reg);
+        btnLog = findViewById(R.id.btnLogin_Reg);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
