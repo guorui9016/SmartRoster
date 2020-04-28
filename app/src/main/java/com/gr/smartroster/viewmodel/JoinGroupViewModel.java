@@ -1,16 +1,26 @@
 package com.gr.smartroster.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
 import com.gr.smartroster.callback.ISearchListCallBackLister;
 import com.gr.smartroster.model.Group;
+import com.gr.smartroster.model.Staff;
+import com.gr.smartroster.util.ConstantUtil;
+import com.gr.smartroster.util.SpUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +28,8 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
     private List<Group> mGrouplist = new ArrayList<>();
     private MutableLiveData<List<Group>> mutableLiveData;
     private ISearchListCallBackLister mSearchCallBackLister;
-    private CollectionReference groupRef;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mGroupRef;
 
     public JoinGroupViewModel(@NonNull Application application) {
         super(application);
@@ -31,7 +42,8 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
     }
 
     public void searchGroup(String sKeyWords) {
-        groupRef = FirebaseFirestore.getInstance().collection("groups");
+        mFirestore = FirebaseFirestore.getInstance();
+
         if (mGrouplist.isEmpty()) {
             searchGroupName(sKeyWords);
             searchCompanyName(sKeyWords);
@@ -43,7 +55,10 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
     }
 
     private void searchCompanyName(String searchKeyWords) {
-        groupRef.whereEqualTo("company_Lower", searchKeyWords).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        mFirestore.collection("groups")
+                .whereEqualTo("company_Lower", searchKeyWords)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -55,13 +70,38 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
     }
 
     private void searchGroupName(String searchKeyWords) {
-        groupRef.whereEqualTo("groupName_Lower", searchKeyWords).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        mFirestore.collection("groups")
+                .whereEqualTo("groupName_Lower", searchKeyWords)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     List<Group> groupList = task.getResult().toObjects(Group.class);
                     mSearchCallBackLister.onSearchSuccessfulLister(groupList);
                 }
+            }
+        });
+    }
+
+    public void addUser(int position) {
+        Group group = mGrouplist.get(position);
+        //save user to staff list
+        String email = (String) SpUtil.get(getApplication(), ConstantUtil.EMAIL_SP, "");
+        Staff staff = new Staff(email, group.getGroupName(), null, group.getCompany(), "0");
+        mFirestore.collection("staffs").add(staff).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                //save information to SP.
+                Log.i("Ray - ", "saveDataToSp: Save user information");
+                SpUtil.set(getApplication(), ConstantUtil.GROUPNAME_SP, staff.getGroupName());
+                SpUtil.set(getApplication(), ConstantUtil.COMPANY_SP, staff.getCompany());
+                SpUtil.set(getApplication(), ConstantUtil.ADMIN_SP, staff.getAdmin());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("Ray", "onFailure: Can not add staff to firestore" );;
             }
         });
     }

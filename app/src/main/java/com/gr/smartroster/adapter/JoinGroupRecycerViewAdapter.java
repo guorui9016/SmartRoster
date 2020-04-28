@@ -7,12 +7,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.gr.smartroster.R;
+import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
 import com.gr.smartroster.model.Group;
 
 import java.util.List;
 
 public class JoinGroupRecycerViewAdapter extends RecyclerView.Adapter<JoinGroupRecycerViewAdapter.JoinGroupViewHolder> {
     private List<Group> groupList;
+    private IRecyclerViewItemClickInterface mItemClickInterface;
+
+    public JoinGroupRecycerViewAdapter(IRecyclerViewItemClickInterface itemClickInterface) {
+        mItemClickInterface = itemClickInterface;
+    }
 
     public void setGroupList(List<Group> groupList) {
         this.groupList = groupList;
@@ -50,6 +56,13 @@ public class JoinGroupRecycerViewAdapter extends RecyclerView.Adapter<JoinGroupR
             tvGroupName = itemView.findViewById(R.id.tvGroupname_JoinGroup);
             tvCompanyName = itemView.findViewById(R.id.tvCompany_JoinGroup);
             tvManagerName = itemView.findViewById(R.id.tvManagerName_JoinGroup);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mItemClickInterface.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 }

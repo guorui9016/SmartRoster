@@ -204,6 +204,11 @@ public class AvaliableTimeFragment extends Fragment implements IRecyclerViewItem
     }
 
     @Override
+    public void onItemClick(int position) {
+
+    }
+
+    @Override
     public void onItemLongClick(int positon) {
         AvaliableTime avaliableTime = avaliabletTimeViewModel.getAvaliableTime(positon);
         callDatePicker(avaliableTime);

@@ -7,24 +7,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.gr.smartroster.R;
 import com.gr.smartroster.adapter.JoinGroupRecycerViewAdapter;
+import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
 import com.gr.smartroster.model.Group;
 import com.gr.smartroster.viewmodel.JoinGroupViewModel;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class JoinGroupActivity extends AppCompatActivity {
+public class JoinGroupActivity extends AppCompatActivity implements IRecyclerViewItemClickInterface {
     private RecyclerView joinGroupRecycleView;
-    private JoinGroupViewModel joinGroupViewModel;
+    private JoinGroupViewModel mJoinGroupViewModel;
     private JoinGroupRecycerViewAdapter myViewAdapter;
     private TextView tvInfo_joinGrup;
     private SearchView svSearchGroup;
@@ -33,15 +30,15 @@ public class JoinGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_group);
-        joinGroupViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(JoinGroupViewModel.class);
-        myViewAdapter = new JoinGroupRecycerViewAdapter();
+        mJoinGroupViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(JoinGroupViewModel.class);
+        myViewAdapter = new JoinGroupRecycerViewAdapter(this);
         joinGroupRecycleView = findViewById(R.id.rvJoinGroup);
         tvInfo_joinGrup = findViewById(R.id.tvInfo_JoinGrup);
         svSearchGroup = findViewById(R.id.svSearchGroup);
         joinGroupRecycleView.setHasFixedSize(true);
         joinGroupRecycleView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
 
-        joinGroupViewModel.getMutableLiveData().observe(this, new Observer<List<Group>>() {
+        mJoinGroupViewModel.getMutableLiveData().observe(this, new Observer<List<Group>>() {
             @Override
             public void onChanged(List<Group> groupList) {
                 myViewAdapter.setGroupList(groupList);
@@ -58,7 +55,7 @@ public class JoinGroupActivity extends AppCompatActivity {
         svSearchGroup.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                joinGroupViewModel.searchGroup(query.toLowerCase());
+                mJoinGroupViewModel.searchGroup(query.toLowerCase());
                 return true;
             }
 
@@ -67,5 +64,16 @@ public class JoinGroupActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        //add user to the staff list of the group.
+        mJoinGroupViewModel.addUser(position);
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+
     }
 }
