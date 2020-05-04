@@ -1,6 +1,7 @@
 package com.gr.smartroster.viewmodel;
 
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.gr.smartroster.activity.DashBoardActivity;
 import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
 import com.gr.smartroster.callback.ISearchListCallBackLister;
 import com.gr.smartroster.model.Group;
@@ -85,6 +87,7 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
     }
 
     public void addUser(int position) {
+
         Group group = mGrouplist.get(position);
         //save user to staff list
         String email = (String) SpUtil.get(getApplication(), ConstantUtil.EMAIL_SP, "");
@@ -97,6 +100,9 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
                 SpUtil.set(getApplication(), ConstantUtil.GROUPNAME_SP, staff.getGroupName());
                 SpUtil.set(getApplication(), ConstantUtil.COMPANY_SP, staff.getCompany());
                 SpUtil.set(getApplication(), ConstantUtil.ADMIN_SP, staff.getAdmin());
+                //jump to home page.
+                Intent intent = new Intent(getApplication(), DashBoardActivity.class);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

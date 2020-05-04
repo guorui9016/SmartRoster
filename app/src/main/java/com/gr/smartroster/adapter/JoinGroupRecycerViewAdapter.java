@@ -1,5 +1,6 @@
 package com.gr.smartroster.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class JoinGroupRecycerViewAdapter extends RecyclerView.Adapter<JoinGroupR
                 @Override
                 public void onClick(View v) {
                     mItemClickInterface.onItemClick(getAdapterPosition());
+                    Log.i("Ray", "onClick: " + getAdapterPosition() + " item has been click.");
                 }
             });
         }
