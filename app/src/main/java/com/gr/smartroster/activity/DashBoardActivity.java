@@ -1,12 +1,9 @@
 package com.gr.smartroster.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.gr.smartroster.R;
 
@@ -46,7 +43,7 @@ public class DashBoardActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_avaliable_time, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_avaliable_time, R.id.nav_user_profile)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

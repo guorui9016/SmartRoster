@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -56,6 +58,7 @@ public class JoinGroupActivity extends AppCompatActivity implements IRecyclerVie
             @Override
             public boolean onQueryTextSubmit(String query) {
                 mJoinGroupViewModel.searchGroup(query.toLowerCase());
+                Log.i("Ray - ", "onQueryTextSubmit: Start search group");
                 return true;
             }
 
@@ -70,6 +73,8 @@ public class JoinGroupActivity extends AppCompatActivity implements IRecyclerVie
     public void onItemClick(int position) {
         //add user to the staff list of the group.
         mJoinGroupViewModel.addUser(position);
+        Intent intent = new Intent(this, DashBoardActivity.class);
+        startActivity(intent);
     }
 
     @Override
