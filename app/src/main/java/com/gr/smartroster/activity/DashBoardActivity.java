@@ -25,8 +25,7 @@ public class DashBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        //init custom data
-        initMyData();
+        initUI();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,13 +50,11 @@ public class DashBoardActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    private void initMyData() {
+    private void initUI() {
         //init widget
         tvName_Nav_Header = findViewById(R.id.tvName_Nav_Header);
         tvCompanyGroupName_Nav_Header = findViewById(R.id.tvCompanyGroupName_Nav_Header);
 
-/*        tvName_Nav_Header.setText(email);
-        tvCompanyGroupName_Nav_Header.setText(string);*/
     }
 
     @Override

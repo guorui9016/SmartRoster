@@ -31,15 +31,28 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/ivSavePhoneNum_disable_Profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="16dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_check_green_24dp"
+                android:tint="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPhoneNumberTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvPhoneNumberTitle" />
+
+            <ImageView
                 android:id="@+id/ivSavePhoneNum_Profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="16dp"
-                android:tint="@android:color/darker_gray"
-                android:background="@drawable/ic_check_black_24dp"
-                android:padding="18dp"
-                android:clickable="false"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/selector_save"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPhoneNumberTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvPhoneNumberTitle" />
@@ -79,25 +92,40 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/ivSaveNewPassword_Disable_Profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="16dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_check_green_24dp"
+                android:tint="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/tvChangePasswordTtitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvChangePasswordTtitle" />
+
+            <ImageView
                 android:id="@+id/ivSaveNewPassword_Profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="@android:color/darker_gray"
-                android:background="@drawable/ic_check_black_24dp"
-                android:padding="18dp"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/selector_save"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/tvChangePasswordTtitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvChangePasswordTtitle" />
+
 
             <EditText
                 android:id="@+id/etOldPassword_Profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvChangePasswordTtitle"
-                android:hint="Old Password" />
+                android:hint="Old Password"
+                app:layout_constraintTop_toBottomOf="@+id/tvChangePasswordTtitle" />
 
 
             <EditText
@@ -105,16 +133,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/etOldPassword_Profile"
-                android:hint="New Password" />
+                android:hint="New Password"
+                app:layout_constraintTop_toBottomOf="@+id/etOldPassword_Profile" />
 
             <EditText
                 android:id="@+id/etComfPassword_Profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/etNewPassword_Profile"
-                android:hint="Comfrom Password" />
+                android:hint="Comfrom Password"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPassword_Profile" />
 
             <ImageView
                 android:id="@+id/ivErrorIcon"
@@ -131,5 +159,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
