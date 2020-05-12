@@ -1,4 +1,4 @@
-package com.gr.smartroster.activity.ui.avaliabletime;
+package com.gr.smartroster.activity.fragment.avaliabletime;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;

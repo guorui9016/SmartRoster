@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.ui.avaliabletime.AvaliableTimeFragment">
+    tools:context=".activity.fragment.avaliabletime.AvaliableTimeFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

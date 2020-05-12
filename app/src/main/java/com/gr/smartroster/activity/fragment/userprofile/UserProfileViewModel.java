@@ -1,4 +1,4 @@
-package com.gr.smartroster.activity.ui.userprofile;
+package com.gr.smartroster.activity.fragment.userprofile;
 
 import android.app.Application;
 
@@ -6,13 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.internal.api.FirebaseNoSignedInUserException;
 import com.gr.smartroster.callback.IUserProfileCallbackLister;
 import com.gr.smartroster.model.User;
 import com.gr.smartroster.util.ConstantUtil;

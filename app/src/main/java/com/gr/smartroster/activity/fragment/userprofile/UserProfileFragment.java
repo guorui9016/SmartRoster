@@ -1,7 +1,5 @@
-package com.gr.smartroster.activity.ui.userprofile;
+package com.gr.smartroster.activity.fragment.userprofile;
 
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,8 +16,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.gr.smartroster.R;
-
-import org.w3c.dom.Text;
 
 public class UserProfileFragment extends Fragment implements View.OnClickListener {
 
