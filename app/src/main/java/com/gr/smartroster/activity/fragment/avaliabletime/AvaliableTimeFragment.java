@@ -26,7 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.gr.smartroster.R;
 import com.gr.smartroster.adapter.AvaliableTimeRecycerViewAdapter;
-import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
+import com.gr.smartroster.callback.IRecyclerViewItemClickLister;
 import com.gr.smartroster.model.AvaliableTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -35,7 +35,7 @@ import java.util.TimeZone;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class AvaliableTimeFragment extends Fragment implements IRecyclerViewItemClickInterface {
+public class AvaliableTimeFragment extends Fragment implements IRecyclerViewItemClickLister {
 
     private AvaliabletTimeViewModel avaliabletTimeViewModel;
     private RecyclerView recyclerView;

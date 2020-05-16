@@ -15,13 +15,13 @@ import android.widget.TextView;
 
 import com.gr.smartroster.R;
 import com.gr.smartroster.adapter.JoinGroupRecycerViewAdapter;
-import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
+import com.gr.smartroster.callback.IRecyclerViewItemClickLister;
 import com.gr.smartroster.model.Group;
 import com.gr.smartroster.viewmodel.JoinGroupViewModel;
 
 import java.util.List;
 
-public class JoinGroupActivity extends AppCompatActivity implements IRecyclerViewItemClickInterface {
+public class JoinGroupActivity extends AppCompatActivity implements IRecyclerViewItemClickLister {
     private RecyclerView joinGroupRecycleView;
     private JoinGroupViewModel mJoinGroupViewModel;
     private JoinGroupRecycerViewAdapter myViewAdapter;

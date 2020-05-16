@@ -2,13 +2,14 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp">
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector_recyclerview_item_touch_bg"
         android:orientation="vertical">
 
         <TextView
@@ -17,29 +18,29 @@
             android:layout_height="wrap_content"
             android:background="#eee"
             android:padding="6dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
+            android:text="Date: "
             android:textAlignment="center"
-            android:text="Date: "/>
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvTime_roster_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:text="Time: "
             android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:text="Time: "/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvRole_roster_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:text="Role: "
             android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:text="Role: "/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvCompany_roster_item"
@@ -48,11 +49,8 @@
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:textStyle="italic"
-            android:text="Company: " />
+            android:text="Company: "
+            android:textStyle="italic" />
 
     </LinearLayout>
-
-
-
 </androidx.cardview.widget.CardView>

@@ -8,15 +8,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.gr.smartroster.R;
+import com.gr.smartroster.callback.IRecyclerViewItemClickLister;
 import com.gr.smartroster.model.Roster;
 import java.text.DateFormat;
 import java.util.List;
 
 public class RosterRecycerViewAdapter extends RecyclerView.Adapter<RosterRecycerViewAdapter.RosterViewHolder> {
     private List<Roster> rosterList;
+    IRecyclerViewItemClickLister mItemClickLister;
 
-    public RosterRecycerViewAdapter(List<Roster> rosterList) {
+    public RosterRecycerViewAdapter(List<Roster> rosterList, IRecyclerViewItemClickLister itemClickLister) {
         this.rosterList = rosterList;
+        this.mItemClickLister = itemClickLister;
     }
 
     @NonNull
@@ -57,6 +60,13 @@ public class RosterRecycerViewAdapter extends RecyclerView.Adapter<RosterRecycer
             tvTime_roster = itemView.findViewById(R.id.tvTime_roster_item);
             tvCompany_roster = itemView.findViewById(R.id.tvCompany_roster_item);
             tvRole_roster = itemView.findViewById(R.id.tvRole_roster_item);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mItemClickLister.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 }

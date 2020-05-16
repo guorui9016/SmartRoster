@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gr.smartroster.R;
-import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
+import com.gr.smartroster.callback.IRecyclerViewItemClickLister;
 import com.gr.smartroster.model.AvaliableTime;
 
 import java.text.DateFormat;
@@ -18,11 +18,11 @@ import java.util.TimeZone;
 
 public class AvaliableTimeRecycerViewAdapter extends RecyclerView.Adapter<AvaliableTimeRecycerViewAdapter.MyAViewHolder> {
     List<AvaliableTime> avaliableTimesList;
-    IRecyclerViewItemClickInterface iRecyclerViewItemClickInterface;
+    IRecyclerViewItemClickLister iRecyclerViewItemClickLister;
 
 
-    public AvaliableTimeRecycerViewAdapter(IRecyclerViewItemClickInterface clickInterface) {
-        this.iRecyclerViewItemClickInterface = clickInterface;
+    public AvaliableTimeRecycerViewAdapter(IRecyclerViewItemClickLister clickInterface) {
+        this.iRecyclerViewItemClickLister = clickInterface;
     }
 
     public void setAvaliableTimesList(List<AvaliableTime> avaliableTimesList) {
@@ -72,7 +72,7 @@ public class AvaliableTimeRecycerViewAdapter extends RecyclerView.Adapter<Avalia
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    iRecyclerViewItemClickInterface.onItemLongClick(getAdapterPosition());
+                    iRecyclerViewItemClickLister.onItemLongClick(getAdapterPosition());
                     return true;
                 }
             });

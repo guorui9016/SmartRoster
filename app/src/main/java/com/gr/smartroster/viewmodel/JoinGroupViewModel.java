@@ -1,7 +1,6 @@
 package com.gr.smartroster.viewmodel;
 
 import android.app.Application;
-import android.content.Intent;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,8 +13,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.gr.smartroster.activity.DashBoardActivity;
-import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
 import com.gr.smartroster.callback.ISearchListCallBackLister;
 import com.gr.smartroster.model.Group;
 import com.gr.smartroster.model.Staff;

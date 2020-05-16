@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,8 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.gr.smartroster.R;
 import com.gr.smartroster.adapter.RosterRecycerViewAdapter;
+import com.gr.smartroster.callback.IRecyclerViewItemClickLister;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements IRecyclerViewItemClickLister {
 
     private HomeViewModel homeViewModel;
     private RecyclerView recyclerView;
@@ -28,7 +30,7 @@ public class HomeFragment extends Fragment {
         initRecycView();
         homeViewModel.getRosterLiveDataList().observe(getViewLifecycleOwner(), rosterList ->{
             //set adapter
-            RosterRecycerViewAdapter rosterRecycerViewAdapter = new RosterRecycerViewAdapter(rosterList);
+            RosterRecycerViewAdapter rosterRecycerViewAdapter = new RosterRecycerViewAdapter(rosterList, this);
             recyclerView.setAdapter(rosterRecycerViewAdapter);
             recyclerView.setLayoutAnimation(layoutAnimationController);
         });
@@ -41,4 +43,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
     }
 
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(getContext(), "Roster item has been clicked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+    }
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#ffffff</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="btnRegister">#ff9999</color>
     <color name="btnLogin">#00ff99</color>
     <color name="flashPageBackground">#1aa3ff</color>
-
     <color name="black_overlay">#66000000</color>
+    <color name="recyclerview_item_touch_background_light_gray">#FFBDBDBD</color>
 </resources>

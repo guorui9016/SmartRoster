@@ -8,16 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.gr.smartroster.R;
-import com.gr.smartroster.callback.IRecyclerViewItemClickInterface;
+import com.gr.smartroster.callback.IRecyclerViewItemClickLister;
 import com.gr.smartroster.model.Group;
 
 import java.util.List;
 
 public class JoinGroupRecycerViewAdapter extends RecyclerView.Adapter<JoinGroupRecycerViewAdapter.JoinGroupViewHolder> {
     private List<Group> groupList;
-    private IRecyclerViewItemClickInterface mItemClickInterface;
+    private IRecyclerViewItemClickLister mItemClickInterface;
 
-    public JoinGroupRecycerViewAdapter(IRecyclerViewItemClickInterface itemClickInterface) {
+    public JoinGroupRecycerViewAdapter(IRecyclerViewItemClickLister itemClickInterface) {
         mItemClickInterface = itemClickInterface;
     }
 

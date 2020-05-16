@@ -4,7 +4,9 @@ import java.util.Map;
 
 public class ConstantUtil {
 
-    //String of field name in firestore
+    //String of field name in
+    //
+    // firestore
     public static final String EMAIL_SP = "email";
     public static final String GROUPNAME_SP = "groupName";
     public static final String COMPANY_SP = "company";
