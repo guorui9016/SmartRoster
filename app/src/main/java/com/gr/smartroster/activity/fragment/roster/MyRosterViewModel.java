@@ -1,4 +1,4 @@
-package com.gr.smartroster.activity.fragment.home;
+package com.gr.smartroster.activity.fragment.roster;
 
 import android.app.Application;
 import android.util.Log;
@@ -17,12 +17,12 @@ import com.gr.smartroster.util.SpUtil;
 
 import java.util.List;
 
-public class HomeViewModel extends AndroidViewModel implements IRosterCallbackLister {
+public class MyRosterViewModel extends AndroidViewModel implements IRosterCallbackLister {
     private MutableLiveData<List<Roster>> rosterLiveDataList;
     private MutableLiveData<String> errorMessage;
     private IRosterCallbackLister rosterCallbackLister;
 
-    public HomeViewModel(@NonNull Application application) {
+    public MyRosterViewModel(@NonNull Application application) {
         super(application);
         rosterCallbackLister = this;
     }
@@ -43,13 +43,13 @@ public class HomeViewModel extends AndroidViewModel implements IRosterCallbackLi
     private void getRoster() {
         Log.i("Ray - ", "getRoster: Start connect db to get data");
 
-        String email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL_SP,"");
-        String groupName = (String) SpUtil.get(getApplication().getApplicationContext(),ConstantUtil.GROUPNAME_SP,"");
+        String email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL,"");
+        String groupName = (String) SpUtil.get(getApplication().getApplicationContext(),ConstantUtil.GROUP_NAME,"");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("roster")
-                .whereEqualTo(ConstantUtil.EMAIL_SP, email)
-                .whereEqualTo(ConstantUtil.GROUPNAME_SP, groupName)
+                .whereEqualTo(ConstantUtil.EMAIL, email)
+                .whereEqualTo(ConstantUtil.GROUP_NAME, groupName)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

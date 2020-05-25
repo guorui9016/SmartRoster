@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_roster">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.gr.smartroster.activity.fragment.home.HomeFragment"
-        android:label="@string/menu_dashboard"
-        tools:layout="@layout/fragment_home">
-    </fragment>
+        android:id="@+id/nav_roster"
+        android:name="com.gr.smartroster.activity.fragment.roster.RosterTabFragment"
+        android:label="@string/roster"
+        tools:layout="@layout/fragment_roster_tab"/>
 
     <fragment
         android:id="@+id/nav_avaliable_time"
@@ -29,4 +28,13 @@
         android:name="com.gr.smartroster.activity.fragment.setting.SettingFragment"
         android:label="@string/setting"
         tools:layout="@layout/fragment_setting" />
+
+    <!--
+        <fragment
+            android:id="@+id/nav_site_roster"
+            android:name="com.gr.smartroster.activity.fragment.roster.SiteRosterFragment"
+            android:label="Site Roster"
+            tools:layout="@layout/fragment_siteroster"/>
+    -->
+
 </navigation>

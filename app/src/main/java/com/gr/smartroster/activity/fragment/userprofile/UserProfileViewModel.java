@@ -27,7 +27,7 @@ public class UserProfileViewModel extends AndroidViewModel implements IUserProfi
         mText = new MutableLiveData<>();
         mIUserProfileCallbackLister = this;
         dbUsers = FirebaseFirestore.getInstance().collection("users");
-        mEmail = (String) SpUtil.get(application.getApplicationContext(), ConstantUtil.EMAIL_SP,"");
+        mEmail = (String) SpUtil.get(application.getApplicationContext(), ConstantUtil.EMAIL,"");
     }
 
     public LiveData<String> getText() {
@@ -50,7 +50,7 @@ public class UserProfileViewModel extends AndroidViewModel implements IUserProfi
 
     public void setUserPhoneNumber(String phoneNumber) {
         //set user phone number to db
-        dbUsers.document(mEmail).update(ConstantUtil.PHONE_NUMBER_SP, phoneNumber).addOnSuccessListener(new OnSuccessListener<Void>() {
+        dbUsers.document(mEmail).update(ConstantUtil.PHONE_NUMBER, phoneNumber).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 mText.setValue("phoneNum");
@@ -59,7 +59,7 @@ public class UserProfileViewModel extends AndroidViewModel implements IUserProfi
     }
 
     public void setPassword(String newPassword) {
-        dbUsers.document(mEmail).update(ConstantUtil.PASSWORD_SP, newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
+        dbUsers.document(mEmail).update(ConstantUtil.PASSWORD, newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 mText.setValue("password");

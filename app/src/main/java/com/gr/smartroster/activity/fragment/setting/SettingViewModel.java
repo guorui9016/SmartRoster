@@ -39,21 +39,21 @@ public class SettingViewModel extends AndroidViewModel {
         DocumentReference user = db.collection("users").document(email);
         batch.delete(user);
         //delete from staffs
-        db.collection("staffs").whereEqualTo(ConstantUtil.EMAIL_SP, email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("staffs").whereEqualTo(ConstantUtil.EMAIL, email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                     batch.delete(queryDocumentSnapshot.getReference());
                 }
                 //delete from roster
-                db.collection("roster").whereEqualTo(ConstantUtil.EMAIL_SP, email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                db.collection("roster").whereEqualTo(ConstantUtil.EMAIL, email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                             batch.delete(queryDocumentSnapshot.getReference());
                         }
                         //delete from avaliableTime
-                        db.collection("avaliableTime").whereEqualTo(ConstantUtil.EMAIL_SP, email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        db.collection("avaliableTime").whereEqualTo(ConstantUtil.EMAIL, email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
@@ -98,8 +98,8 @@ public class SettingViewModel extends AndroidViewModel {
         Log.d("Ray - ", "exitGroup: Start query");
         //query from staffs collection and add document to batch
         db.collection("staffs")
-                .whereEqualTo(ConstantUtil.GROUPNAME_SP, groupName)
-                .whereEqualTo(ConstantUtil.EMAIL_SP, email)
+                .whereEqualTo(ConstantUtil.GROUP_NAME, groupName)
+                .whereEqualTo(ConstantUtil.EMAIL, email)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -110,8 +110,8 @@ public class SettingViewModel extends AndroidViewModel {
                         Log.d("Ray - ", "onSuccess: add document from staffs collection");
                         //query from roster
                         db.collection("roster")
-                                .whereEqualTo(ConstantUtil.GROUPNAME_SP, groupName)
-                                .whereEqualTo(ConstantUtil.EMAIL_SP, email)
+                                .whereEqualTo(ConstantUtil.GROUP_NAME, groupName)
+                                .whereEqualTo(ConstantUtil.EMAIL, email)
                                 .get()
                                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                     @Override
@@ -122,8 +122,8 @@ public class SettingViewModel extends AndroidViewModel {
                                         Log.d("Ray - ", "onSuccess: add doc from roster collection");
                                         //query from avaliable time collection
                                         db.collection("avaliableTime")
-                                                .whereEqualTo(ConstantUtil.GROUPNAME_SP, groupName)
-                                                .whereEqualTo(ConstantUtil.EMAIL_SP, email)
+                                                .whereEqualTo(ConstantUtil.GROUP_NAME, groupName)
+                                                .whereEqualTo(ConstantUtil.EMAIL, email)
                                                 .get()
                                                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                                     @Override

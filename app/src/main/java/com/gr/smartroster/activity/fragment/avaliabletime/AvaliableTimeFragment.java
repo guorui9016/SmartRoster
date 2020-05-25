@@ -130,7 +130,7 @@ public class AvaliableTimeFragment extends Fragment implements IRecyclerViewItem
                 mYear = year;
                 mMonth = month;
                 mDay = dayOfMonth;
-                selectCal.set(year, month, dayOfMonth);
+                selectCal.set(year, month, dayOfMonth,0,0,0);
                 avaliableTime.setDate(new Timestamp(selectCal.getTime()));
                 Log.i("Ray - ", "onTimeSet: Start date: " + year + month + dayOfMonth);
                 callStartTimePicker(avaliableTime);

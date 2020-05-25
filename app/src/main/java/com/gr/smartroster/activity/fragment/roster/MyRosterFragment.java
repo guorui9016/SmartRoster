@@ -1,4 +1,4 @@
-package com.gr.smartroster.activity.fragment.home;
+package com.gr.smartroster.activity.fragment.roster;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,30 +17,30 @@ import com.gr.smartroster.R;
 import com.gr.smartroster.adapter.RosterRecycerViewAdapter;
 import com.gr.smartroster.callback.IRecyclerViewItemClickLister;
 
-public class HomeFragment extends Fragment implements IRecyclerViewItemClickLister {
+public class MyRosterFragment extends Fragment implements IRecyclerViewItemClickLister {
 
-    private HomeViewModel homeViewModel;
-    private RecyclerView recyclerView;
-    private LayoutAnimationController layoutAnimationController;
+    private MyRosterViewModel mMyRosterViewModel;
+    private RecyclerView mRecyclerView;
+    private LayoutAnimationController mLayoutAnimationController;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerView = root.findViewById(R.id.rvRosterList);
+        mMyRosterViewModel = ViewModelProviders.of(this).get(MyRosterViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_my_roster, container, false);
+        mRecyclerView = root.findViewById(R.id.rvRosterList);
         initRecycView();
-        homeViewModel.getRosterLiveDataList().observe(getViewLifecycleOwner(), rosterList ->{
+        mMyRosterViewModel.getRosterLiveDataList().observe(getViewLifecycleOwner(), rosterList ->{
             //set adapter
             RosterRecycerViewAdapter rosterRecycerViewAdapter = new RosterRecycerViewAdapter(rosterList, this);
-            recyclerView.setAdapter(rosterRecycerViewAdapter);
-            recyclerView.setLayoutAnimation(layoutAnimationController);
+            mRecyclerView.setAdapter(rosterRecycerViewAdapter);
+            mRecyclerView.setLayoutAnimation(mLayoutAnimationController);
         });
         return root;
     }
 
     private void initRecycView() {
-        layoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_item_from_left);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        mLayoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_item_from_left);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
     }
 
     @Override

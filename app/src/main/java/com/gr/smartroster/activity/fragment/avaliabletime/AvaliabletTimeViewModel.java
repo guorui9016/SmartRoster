@@ -35,9 +35,9 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
     public AvaliabletTimeViewModel(@NonNull Application application) {
         super(application);
         avaliableTimeCallBackLister = this;
-        email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL_SP, "");
-        groupName = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.GROUPNAME_SP,"");
-        company = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.COMPANY_SP,"");
+        email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL, "");
+        groupName = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.GROUP_NAME,"");
+        company = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.COMPANY,"");
     }
 
     public MutableLiveData<List<AvaliableTime>> getAvaliableTimeLiveDataList() {
@@ -113,8 +113,8 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
         Log.i("Ray", "getAvaliableTime: Start load avaliable time data from db");
         //get all data from db
                 mCollectionRef
-                .whereEqualTo(ConstantUtil.EMAIL_SP, email)
-                .whereEqualTo(ConstantUtil.GROUPNAME_SP, groupName)
+                .whereEqualTo(ConstantUtil.EMAIL, email)
+                .whereEqualTo(ConstantUtil.GROUP_NAME, groupName)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

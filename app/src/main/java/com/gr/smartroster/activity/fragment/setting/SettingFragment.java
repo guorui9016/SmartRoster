@@ -15,8 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.gr.smartroster.R;
@@ -87,7 +85,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                mSettingViewModel.deleteAccount((String) SpUtil.get(getContext(), ConstantUtil.EMAIL_SP, ""));
+                                mSettingViewModel.deleteAccount((String) SpUtil.get(getContext(), ConstantUtil.EMAIL, ""));
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
@@ -99,8 +97,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tvExitGroup:
                 //exit the currect group
-                mSettingViewModel.exitGroup((String) SpUtil.get(getContext(), ConstantUtil.GROUPNAME_SP, ""),
-                        (String) SpUtil.get(getContext(), ConstantUtil.EMAIL_SP, ""));
+                mSettingViewModel.exitGroup((String) SpUtil.get(getContext(), ConstantUtil.GROUP_NAME, ""),
+                        (String) SpUtil.get(getContext(), ConstantUtil.EMAIL, ""));
                 break;
             case R.id.tvLogout:
                 Log.d("Ray - ", "onClick: Logout");

@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,7 +54,7 @@ public class GroupListActivity extends AppCompatActivity {
 
     private void checkGroup() {
         //get email from login page
-        email = (String) SpUtil.get(getApplicationContext(), ConstantUtil.EMAIL_SP, "");
+        email = (String) SpUtil.get(getApplicationContext(), ConstantUtil.EMAIL, "");
         Log.i("Ray - ", "initdata: -- The user Email is: " + email);
         //get the group list from firestore.
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -114,9 +112,9 @@ public class GroupListActivity extends AppCompatActivity {
 
     private void saveDataToSp(Staff staff) {
         Log.i("Ray - ", "saveDataToSp: Save user information");
-        SpUtil.set(getApplicationContext(), ConstantUtil.GROUPNAME_SP, staff.getGroupName());
-        SpUtil.set(getApplicationContext(), ConstantUtil.COMPANY_SP, staff.getCompany());
-        SpUtil.set(getApplicationContext(), ConstantUtil.ADMIN_SP, staff.getAdmin());
+        SpUtil.set(getApplicationContext(), ConstantUtil.GROUP_NAME, staff.getGroupName());
+        SpUtil.set(getApplicationContext(), ConstantUtil.COMPANY, staff.getCompany());
+        SpUtil.set(getApplicationContext(), ConstantUtil.ADMIN, staff.getAdmin());
     }
 }
 

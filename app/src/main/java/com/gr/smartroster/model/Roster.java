@@ -10,18 +10,17 @@ public class Roster {
     private Timestamp endTime;
     private String company;
     private String role;
+    private String name;
 
-    public Roster() {
+    public String getName() {
+        return name;
     }
 
-    public Roster(String email, String groupName, Timestamp date, Timestamp startTime, Timestamp endTime, String company, String role) {
-        this.email = email;
-        this.groupName = groupName;
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.company = company;
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Roster() {
     }
 
     public String getCompany() {

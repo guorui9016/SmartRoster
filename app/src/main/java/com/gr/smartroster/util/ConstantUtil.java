@@ -6,13 +6,15 @@ public class ConstantUtil {
 
     //String of field name in
     //
-    // firestore
-    public static final String EMAIL_SP = "email";
-    public static final String GROUPNAME_SP = "groupName";
-    public static final String COMPANY_SP = "company";
-    public static final String ADMIN_SP = "admin";
-    public static final String PHONE_NUMBER_SP = "phoneNumber";
-    public static final String PASSWORD_SP = "password";
+    // firestore flied & SharedPreferences
+    public static final String EMAIL = "email";
+    public static final String GROUP_NAME = "groupName";
+    public static final String COMPANY = "company";
+    public static final String ADMIN = "admin";
+    public static final String PHONE_NUMBER = "phoneNumber";
+    public static final String PASSWORD = "password";
+    public static final String DATE = "date";
+    public static final String START_TIME = "startTime";
 
     //Request code
     public static final int SAVETIME_REQUEST_CODE = 1001;

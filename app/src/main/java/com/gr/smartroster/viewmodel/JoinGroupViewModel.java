@@ -90,7 +90,7 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
 
         Group group = mGrouplist.get(position);
         //save user to staff list
-        String email = (String) SpUtil.get(getApplication(), ConstantUtil.EMAIL_SP, "");
+        String email = (String) SpUtil.get(getApplication(), ConstantUtil.EMAIL, "");
         //check the database first. Only the user not exist in the group, it can add in.
         mFirestore.collection("staffs")
                 .whereEqualTo("email", email)
@@ -105,9 +105,9 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
                             public void onSuccess(DocumentReference documentReference) {
                                 //save information to SP.
                                 Log.i("Ray - ", "saveDataToSp: Save user information");
-                                SpUtil.set(getApplication(), ConstantUtil.GROUPNAME_SP, staff.getGroupName());
-                                SpUtil.set(getApplication(), ConstantUtil.COMPANY_SP, staff.getCompany());
-                                SpUtil.set(getApplication(), ConstantUtil.ADMIN_SP, staff.getAdmin());
+                                SpUtil.set(getApplication(), ConstantUtil.GROUP_NAME, staff.getGroupName());
+                                SpUtil.set(getApplication(), ConstantUtil.COMPANY, staff.getCompany());
+                                SpUtil.set(getApplication(), ConstantUtil.ADMIN, staff.getAdmin());
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override

@@ -13,19 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.gr.smartroster.R;
 import com.gr.smartroster.model.User;
 import com.gr.smartroster.util.ConstantUtil;
 import com.gr.smartroster.util.SpUtil;
-
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
@@ -58,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, R.string.login_successful_message, Toast.LENGTH_SHORT).show();
                                         Log.i("Ray - ", "onDataChange: Login successful.");
                                         Intent intent = new Intent(LoginActivity.this, GroupListActivity.class);
-                                        SpUtil.set(getApplicationContext(), ConstantUtil.EMAIL_SP, email);
+                                        SpUtil.set(getApplicationContext(), ConstantUtil.EMAIL, email);
                                         startActivity(intent);
                                         finish();
                                     } else {
