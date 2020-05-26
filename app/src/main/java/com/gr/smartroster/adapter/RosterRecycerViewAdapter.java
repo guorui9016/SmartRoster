@@ -1,6 +1,5 @@
 package com.gr.smartroster.adapter;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -26,5 +26,6 @@ public class ConstantUtil {
     public static final String TIMESTAMP_DATE = "TimeStamp_Date";
     public static final String TIMESTAMP_START_TIME = "TimeStamp_StartTime";
     public static final String TIMESTAMP_END_TIME = "TimeStamp_EndTime";
+    public static final String NAME = "name";
     //
 }

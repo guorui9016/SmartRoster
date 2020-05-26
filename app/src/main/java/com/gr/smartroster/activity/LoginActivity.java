@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Log.i("Ray - ", "onDataChange: Login successful.");
                                         Intent intent = new Intent(LoginActivity.this, GroupListActivity.class);
                                         SpUtil.set(getApplicationContext(), ConstantUtil.EMAIL, email);
+                                        SpUtil.set(getApplicationContext(), ConstantUtil.NAME, user.getFullName());
                                         startActivity(intent);
                                         finish();
                                     } else {

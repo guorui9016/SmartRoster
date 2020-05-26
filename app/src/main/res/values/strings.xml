@@ -40,5 +40,6 @@
     <string name="user_profile_phone_number">Phone Number</string>
     <string name="setting">Setting</string>
     <string name="roster">Roster</string>
+    <string name="date_picker">Date picker</string>
 
 </resources>

@@ -57,7 +57,7 @@ public class SiteRosterViewModel extends AndroidViewModel implements IRosterCall
             currentCal.setTimeInMillis(System.currentTimeMillis());
             Calendar currentDate = new GregorianCalendar();
             currentDate.set(currentCal.get(Calendar.YEAR),
-                    currentCal.get(Calendar.MONTH),
+                    currentCal.get(Calendar.MONTH-1),
                     currentCal.get(Calendar.DAY_OF_MONTH-1),0,0,0);
             Log.d("Ray-SiteRosterViewModel", "getRoster: The date is:" + currentCal.get(Calendar.YEAR) + (currentCal.get(Calendar.MONTH)+1)+ currentCal.get(Calendar.DAY_OF_MONTH));
             mDate = new Timestamp(currentDate.getTime());
@@ -81,7 +81,6 @@ public class SiteRosterViewModel extends AndroidViewModel implements IRosterCall
             }
         });
     }
-
 
     @Override
     public void onRosterLoadSuccessful(List<Roster> rosterList) {

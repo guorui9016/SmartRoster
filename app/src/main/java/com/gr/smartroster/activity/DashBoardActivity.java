@@ -2,10 +2,13 @@ package com.gr.smartroster.activity;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.gr.smartroster.R;
+import com.gr.smartroster.util.ConstantUtil;
+import com.gr.smartroster.util.SpUtil;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,34 +22,39 @@ public class DashBoardActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView tvName_Nav_Header, tvCompanyGroupName_Nav_Header;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        initUI();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        mNavigationView = findViewById(R.id.nav_view);
+        initUI();
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_roster, R.id.nav_avaliable_time, R.id.nav_user_profile)
+                R.id.nav_roster, R.id.nav_avaliable_time, R.id.nav_user_profile, R.id.nav_setting)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        NavigationUI.setupWithNavController(mNavigationView, navController);
     }
 
     private void initUI() {
-        //init widget
-        tvName_Nav_Header = findViewById(R.id.tvName_Nav_Header);
-        tvCompanyGroupName_Nav_Header = findViewById(R.id.tvCompanyGroupName_Nav_Header);
-
+        //init HeaderView
+        View navHeaderView = mNavigationView.getHeaderView(0);
+        tvName_Nav_Header = navHeaderView.findViewById(R.id.tvName_Nav_Header);
+        tvCompanyGroupName_Nav_Header = navHeaderView.findViewById(R.id.tvCompanyGroupName_Nav_Header);
+        String groupName = (String) SpUtil.get(getApplicationContext(), ConstantUtil.GROUP_NAME, "Group Name");
+        String name = (String) SpUtil.get(getApplicationContext(), ConstantUtil.NAME, "Name");
+        tvCompanyGroupName_Nav_Header.setText(groupName);
+        tvName_Nav_Header.setText(name);
     }
 
     @Override
