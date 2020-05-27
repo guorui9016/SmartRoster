@@ -14,11 +14,9 @@ import java.util.List;
 
 public class RosterRecycerViewAdapter extends RecyclerView.Adapter<RosterRecycerViewAdapter.RosterViewHolder> {
     private List<Roster> rosterList;
-    IRecyclerViewItemClickLister mItemClickLister;
 
-    public RosterRecycerViewAdapter(List<Roster> rosterList, IRecyclerViewItemClickLister itemClickLister) {
+    public RosterRecycerViewAdapter(List<Roster> rosterList) {
         this.rosterList = rosterList;
-        this.mItemClickLister = itemClickLister;
     }
 
     @NonNull
@@ -60,12 +58,12 @@ public class RosterRecycerViewAdapter extends RecyclerView.Adapter<RosterRecycer
             tvCompany_roster = itemView.findViewById(R.id.tvCompany_roster_item);
             tvRole_roster = itemView.findViewById(R.id.tvRole_roster_item);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+/*            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mItemClickLister.onItemClick(getAdapterPosition());
                 }
-            });
+            });*/
         }
     }
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.fragment.setting.SettingFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                style="@style/Text_Item"
+                android:id="@+id/tvGroupInfo"
+                android:text="Group Info"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/Text_Item"
+                android:id="@+id/tvSwitchGroup"
+                android:layout_marginTop="15dp"
+                android:text="Switch Group"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGroupInfo"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                style="@style/Text_Item"
+                android:id="@+id/tvStaffs"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:text="Staffs"
+                android:clickable="true"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRoles"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="Roles"
+                android:clickable="true"
+                app:layout_constraintTop_toBottomOf="@+id/tvStaffs" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvCreatGroup"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:text="Creat Group"
+                android:textColor="@android:color/holo_green_light"
+                android:clickable="true"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvExitGroup"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="Exit group"
+                android:textColor="@android:color/holo_blue_light"
+                android:clickable="true"
+                app:layout_constraintTop_toBottomOf="@+id/tvCreatGroup" />
+
+            <TextView
+                android:id="@+id/tvDeleteGroup"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="Delete Group"
+                android:textColor="@android:color/holo_red_light"
+                android:clickable="true"
+                app:layout_constraintTop_toBottomOf="@+id/tvExitGroup" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

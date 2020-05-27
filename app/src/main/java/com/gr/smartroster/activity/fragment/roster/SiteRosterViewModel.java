@@ -28,15 +28,19 @@ public class SiteRosterViewModel extends AndroidViewModel implements IRosterCall
     private IRosterCallbackLister mRosterCallbackLister;
     private FirebaseFirestore mDb;
     private Timestamp mDate;
+    private final String mGroupName;
 
     public void setDate(Timestamp date) {
         mDate = date;
+        getRoster();
     }
 
     public SiteRosterViewModel(@NonNull Application application) {
         super(application);
         mRosterCallbackLister = this;
         mDb = FirebaseFirestore.getInstance();
+        //get groupname from SharedPreferences
+        mGroupName = (String) SpUtil.get(getApplication(), ConstantUtil.GROUP_NAME, "");
     }
 
     public MediatorLiveData<List<Roster>> getLiveData() {
@@ -48,8 +52,6 @@ public class SiteRosterViewModel extends AndroidViewModel implements IRosterCall
     }
 
     private void getRoster() {
-        //get groupname from SharedPreferences
-        String groupName = (String) SpUtil.get(getApplication(), ConstantUtil.GROUP_NAME, "");
         //check the date, use the current date if date is null.
         if (mDate == null) {
             Log.d("Ray-SiteRosterViewModel", "getRoster: set current date." );
@@ -66,7 +68,7 @@ public class SiteRosterViewModel extends AndroidViewModel implements IRosterCall
         //query roster by date and group name.
         mDb.collection("roster")
                 .whereGreaterThan(ConstantUtil.DATE, mDate)
-                .whereEqualTo(ConstantUtil.GROUP_NAME, groupName)
+                .whereEqualTo(ConstantUtil.GROUP_NAME, mGroupName)
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

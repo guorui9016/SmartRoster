@@ -8,5 +8,5 @@
     <color name="btnLogin">#00ff99</color>
     <color name="flashPageBackground">#1aa3ff</color>
     <color name="black_overlay">#66000000</color>
-    <color name="recyclerview_item_touch_background_light_gray">#FFBDBDBD</color>
+    <color name="item_touch_background_light_gray">#FFBDBDBD</color>
 </resources>

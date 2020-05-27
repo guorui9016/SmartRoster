@@ -20,7 +20,7 @@ public class SiteRosterRecyclerViewAdapter extends RecyclerView.Adapter {
     private final int VIEW_TYPE_EMPTY = 0;
     private final int VIEW_TYPE_ITEM = 1;
 
-    public SiteRosterRecyclerViewAdapter(List<Roster> rosterList) {
+    public void setRosterList(List<Roster> rosterList) {
         mRosterList = rosterList;
     }
 

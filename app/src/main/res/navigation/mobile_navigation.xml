@@ -34,7 +34,7 @@
             android:id="@+id/nav_site_roster"
             android:name="com.gr.smartroster.activity.fragment.roster.SiteRosterFragment"
             android:label="Site Roster"
-            tools:layout="@layout/fragment_siteroster"/>
+            tools:layout="@layout/fragment_site_roster"/>
     -->
 
 </navigation>

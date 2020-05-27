@@ -56,18 +56,15 @@ public class AvaliableTimeFragment extends Fragment implements IRecyclerViewItem
         initRecycleView();
 
         adapter = new AvaliableTimeRecycerViewAdapter(this);
-        avaliabletTimeViewModel.getAvaliableTimeLiveDataList().observe(getViewLifecycleOwner(), new Observer<List<AvaliableTime>>() {
-            @Override
-            public void onChanged(List<AvaliableTime> avaliableTimes) {
-                adapter.setAvaliableTimesList(avaliableTimes);
-                recyclerView.setAdapter(adapter);
-                //Set information if no avaliable time.
-                if (avaliableTimes.isEmpty()) {
-                    tvInfo_Avali.setText("Please add new avaliable time!");
-                    tvInfo_Avali.setVisibility(View.VISIBLE);
-                } else {
-                    tvInfo_Avali.setVisibility(View.INVISIBLE);
-                }
+        avaliabletTimeViewModel.getAvaliableTimeLiveDataList().observe(getViewLifecycleOwner(), avaliableTimes -> {
+            adapter.setAvaliableTimesList(avaliableTimes);
+            recyclerView.setAdapter(adapter);
+            //Set information if no avaliable time.
+            if (avaliableTimes.isEmpty()) {
+                tvInfo_Avali.setText("Please add new avaliable time!");
+                tvInfo_Avali.setVisibility(View.VISIBLE);
+            } else {
+                tvInfo_Avali.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -118,6 +115,7 @@ public class AvaliableTimeFragment extends Fragment implements IRecyclerViewItem
     }
 
     private void callDatePicker(AvaliableTime avaliableTime) {
+        //tempCal: for the default date of the data picker dialog
         tempCal = Calendar.getInstance();
         if (avaliableTime.getDocID() != null) {
             tempCal.setTime(avaliableTime.getDate().toDate());
