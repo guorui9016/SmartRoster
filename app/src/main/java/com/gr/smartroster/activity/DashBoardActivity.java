@@ -30,7 +30,7 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_nav);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         mNavigationView = findViewById(R.id.nav_view);
@@ -38,7 +38,7 @@ public class DashBoardActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_roster, R.id.nav_avaliable_time, R.id.nav_user_profile, R.id.nav_setting)
+                R.id.nav_roster, R.id.nav_avaliable_time, R.id.nav_manage_group, R.id.nav_user_profile, R.id.nav_setting)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

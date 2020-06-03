@@ -99,7 +99,7 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     if (task.getResult().isEmpty()) {
-                        Staff staff = new Staff(email, group.getGroupName(), null, group.getCompany(), "0");
+                        Staff staff = new Staff(email, group.getGroupName(), null, group.getCompany(), false);
                         mFirestore.collection("staffs").add(staff).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
@@ -113,7 +113,6 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Log.e("Ray", "onFailure: Can not add staff to firestore");
-                                ;
                             }
                         });
                     }

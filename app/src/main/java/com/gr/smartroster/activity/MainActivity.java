@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void test(View view) {
         Staff staff = new Staff();
-        staff.setAdmin("123");
+        staff.setAdmin(false);
         staff.setCompany("Home");
         staff.setContractType("Parttime");
         staff.setEmail("Guorui9016@gmail.com");

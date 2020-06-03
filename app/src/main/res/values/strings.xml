@@ -41,5 +41,6 @@
     <string name="setting">Setting</string>
     <string name="roster">Roster</string>
     <string name="date_picker">Date picker</string>
+    <string name="manage_group">Manage Group</string>
 
 </resources>

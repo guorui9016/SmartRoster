@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/group_general"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_roster"
             android:icon="@drawable/ic_group_black_24dp"
@@ -12,9 +12,18 @@
             android:id="@+id/nav_avaliable_time"
             android:icon="@drawable/ic_today_black_24dp"
             android:title="@string/available_time" />
-
     </group>
-    <group>
+
+    <group android:id="@+id/group_manager"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage_group"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="@string/manage_group" />
+    </group>
+
+    <group android:id="@+id/group_setting"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_user_profile"
             android:icon="@drawable/ic_account_box_black_24dp"

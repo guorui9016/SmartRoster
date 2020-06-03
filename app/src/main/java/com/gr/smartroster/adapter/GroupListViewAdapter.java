@@ -44,8 +44,8 @@ public class GroupListViewAdapter extends BaseAdapter {
             view = convertView;
         }
 
-        TextView groupName = view.findViewById(R.id.tvGroupName_group);
-        TextView company = view.findViewById(R.id.tvCompany_group);
+        TextView groupName = view.findViewById(R.id.tvGroupName_GroupList);
+        TextView company = view.findViewById(R.id.tvCompany_GroupList);
 
         groupName.setText(list.get(position).getGroupName());
         company.append(list.get(position).getCompany());

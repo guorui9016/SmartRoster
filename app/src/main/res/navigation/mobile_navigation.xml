@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_avaliable" />
 
     <fragment
+        android:id="@+id/nav_manage_group"
+        android:name="com.gr.smartroster.activity.fragment.managegroup.ManageGroupFragment"
+        android:label="@string/manage_group"
+        tools:layout="@layout/fragment_manage_group" />
+
+    <fragment
         android:id="@+id/nav_user_profile"
         android:name="com.gr.smartroster.activity.fragment.userprofile.UserProfileFragment"
         android:label="@string/menu_user_profile"

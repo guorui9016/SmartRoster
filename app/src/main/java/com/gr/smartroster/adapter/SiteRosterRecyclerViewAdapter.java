@@ -30,7 +30,7 @@ public class SiteRosterRecyclerViewAdapter extends RecyclerView.Adapter {
         View view;
         //check the viewtype, if it is empty, return empty item view
         if (viewType  ==  VIEW_TYPE_EMPTY) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_site_roster_empty, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty, parent, false);
             return new MyEmptyViewHolder(view);
         }
 
@@ -79,7 +79,7 @@ public class SiteRosterRecyclerViewAdapter extends RecyclerView.Adapter {
         return mRosterList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    private class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
         TextView tvRole;
         TextView tvTime;
@@ -91,7 +91,7 @@ public class SiteRosterRecyclerViewAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public class MyEmptyViewHolder extends RecyclerView.ViewHolder {
+    private class MyEmptyViewHolder extends RecyclerView.ViewHolder {
         TextView tvEmptyItem;
         public MyEmptyViewHolder(@NonNull View itemView) {
             super(itemView);

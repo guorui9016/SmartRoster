@@ -1,21 +1,33 @@
 package com.gr.smartroster.model;
 
+import java.util.ArrayList;
+
 public class Staff {
     private String email;
     private String groupName;
     private String contractType;
     private String company;
-    private String admin;
+    private boolean admin;
+    private ArrayList<String> roles;
 
-    public Staff() {
-    }
-
-    public Staff(String email, String groupName, String contractType, String company, String admin) {
+    public Staff(String email, String groupName, String contractType, String company, boolean admin) {
         this.email = email;
         this.groupName = groupName;
         this.contractType = contractType;
         this.company = company;
         this.admin = admin;
+        this.roles = roles;
+    }
+
+    public Staff() {
+    }
+
+    public ArrayList<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(ArrayList<String> roles) {
+        this.roles = roles;
     }
 
     public String getEmail() {
@@ -50,11 +62,11 @@ public class Staff {
         this.company = company;
     }
 
-    public String getAdmin() {
+    public boolean getAdmin() {
         return admin;
     }
 
-    public void setAdmin(String admin) {
+    public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 
