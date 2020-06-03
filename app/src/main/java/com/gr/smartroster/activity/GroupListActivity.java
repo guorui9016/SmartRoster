@@ -47,9 +47,9 @@ public class GroupListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkGroup();
         setContentView(R.layout.activity_group_list);
         tvGroupInfo = findViewById(R.id.tvGroupListInfo);
-        checkGroup();
     }
 
     private void checkGroup() {
@@ -105,6 +105,7 @@ public class GroupListActivity extends AppCompatActivity {
                 Staff staff = list.get(position);
                 saveDataToSp(staff);
                 Intent intent = new Intent(GroupListActivity.this, DashBoardActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
