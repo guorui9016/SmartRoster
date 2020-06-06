@@ -91,6 +91,7 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
         Group group = mGrouplist.get(position);
         //save user to staff list
         String email = (String) SpUtil.get(getApplication(), ConstantUtil.EMAIL, "");
+        String name = (String)SpUtil.get(getApplication(), ConstantUtil.NAME, "");
         //check the database first. Only the user not exist in the group, it can add in.
         mFirestore.collection("staffs")
                 .whereEqualTo("email", email)
@@ -99,7 +100,7 @@ public class JoinGroupViewModel extends AndroidViewModel implements ISearchListC
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     if (task.getResult().isEmpty()) {
-                        Staff staff = new Staff(email, group.getGroupName(), null, group.getCompany(), false);
+                        Staff staff = new Staff(email, group.getGroupName(), group.getCompany(), name, false);
                         mFirestore.collection("staffs").add(staff).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {

@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- Main activity -->
+        <activity android:name=".activity.EditStaffActivity"></activity>
+        <activity android:name=".activity.ManageStaffActivity" /> <!-- Main activity -->
         <activity
-        android:name=".activity.MainActivity"
-        android:launchMode="singleTop">
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +23,9 @@
             </intent-filter>
         </activity> <!-- Home activity -->
         <activity
-        android:name=".activity.DashBoardActivity"
-        android:label="@string/title_activity_dash_board"
-        android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".activity.DashBoardActivity"
+            android:label="@string/title_activity_dash_board"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.JoinGroupActivity" />
         <activity android:name=".activity.AddTimeActivity" />

@@ -14,7 +14,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.gr.smartroster.callback.IAvaliableTimeCallBackLister;
+import com.gr.smartroster.callback.IFireStoreCallBackLister;
 import com.gr.smartroster.model.AvaliableTime;
 import com.gr.smartroster.util.ConstantUtil;
 import com.gr.smartroster.util.SpUtil;
@@ -22,11 +22,11 @@ import com.gr.smartroster.util.SpUtil;
 import java.util.Collections;
 import java.util.List;
 
-public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvaliableTimeCallBackLister {
+public class AvaliabletTimeViewModel extends AndroidViewModel implements IFireStoreCallBackLister {
 
     private MutableLiveData<List<AvaliableTime>> avaliableTimeLiveDataList;
     private MutableLiveData<String> errorMessage;
-    private IAvaliableTimeCallBackLister avaliableTimeCallBackLister;
+    private IFireStoreCallBackLister mIFireStoreCallBackLister;
     private List<AvaliableTime> mAvaliableTimeList = null;
     String email, groupName, company;
     CollectionReference mCollectionRef = FirebaseFirestore.getInstance().collection("avaliableTime");
@@ -34,7 +34,7 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
 
     public AvaliabletTimeViewModel(@NonNull Application application) {
         super(application);
-        avaliableTimeCallBackLister = this;
+        mIFireStoreCallBackLister = this;
         email = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.EMAIL, "");
         groupName = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.GROUP_NAME,"");
         company = (String) SpUtil.get(getApplication().getApplicationContext(), ConstantUtil.COMPANY,"");
@@ -67,7 +67,7 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
             public void onSuccess(Void aVoid) {
                 mAvaliableTimeList.add(avaliableTime);
                 Collections.sort(mAvaliableTimeList);
-                OnAvaliableTimeSuccessful(mAvaliableTimeList);
+                mIFireStoreCallBackLister.OnSuccessfulLister(mAvaliableTimeList);
                 Log.i("Ray", "insertAvaliableTime: new time has been add");
             }
         });
@@ -86,7 +86,7 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
                     }
                 }
                 Collections.sort(mAvaliableTimeList);
-                OnAvaliableTimeSuccessful(mAvaliableTimeList);
+                mIFireStoreCallBackLister.OnSuccessfulLister(mAvaliableTimeList);
             }
         });
     }
@@ -98,7 +98,7 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
             @Override
             public void onSuccess(Void aVoid) {
                 mAvaliableTimeList.remove(position);
-                OnAvaliableTimeSuccessful(mAvaliableTimeList);
+                mIFireStoreCallBackLister.OnSuccessfulLister(mAvaliableTimeList);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -106,7 +106,6 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
                 Toast.makeText(getApplication(), "Error occured when delete the time.", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void getAvaliableTime() {
@@ -123,27 +122,27 @@ public class AvaliabletTimeViewModel extends AndroidViewModel implements IAvalia
                     Log.i("Ray - ", "onComplete: the size of avalibaletime list is: " + tempList.size());
                     if (tempList.size()>0) {
                         Collections.sort(tempList);
-                        avaliableTimeCallBackLister.OnAvaliableTimeSuccessful(mAvaliableTimeList = tempList);
+                        mIFireStoreCallBackLister.OnSuccessfulLister(mAvaliableTimeList = tempList);
                     }
                 } else {
-                    avaliableTimeCallBackLister.OnAvaliableTimeLoadFailed("Load data error");
+                    mIFireStoreCallBackLister.OnFailedLister("Load data error");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                avaliableTimeCallBackLister.OnAvaliableTimeLoadFailed(e.toString());
+                mIFireStoreCallBackLister.OnFailedLister(e.toString());
             }
         });
     }
 
     @Override
-    public void OnAvaliableTimeSuccessful(List<AvaliableTime> avaliableTimeList) {
-        avaliableTimeLiveDataList.setValue(avaliableTimeList);
+    public void OnSuccessfulLister(List itemList) {
+        avaliableTimeLiveDataList.setValue(itemList);
     }
 
     @Override
-    public void OnAvaliableTimeLoadFailed(String message) {
-        avaliableTimeCallBackLister.OnAvaliableTimeLoadFailed(message);
+    public void OnFailedLister(String errorMessage) {
+        mIFireStoreCallBackLister.OnFailedLister(errorMessage);
     }
 }

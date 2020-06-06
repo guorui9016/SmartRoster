@@ -1,25 +1,32 @@
 package com.gr.smartroster.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 public class Staff {
-    private String email;
-    private String groupName;
-    private String contractType;
-    private String company;
+    private String email, groupName, contractType, company, name, level;
     private boolean admin;
     private ArrayList<String> roles;
 
-    public Staff(String email, String groupName, String contractType, String company, boolean admin) {
-        this.email = email;
-        this.groupName = groupName;
-        this.contractType = contractType;
-        this.company = company;
-        this.admin = admin;
-        this.roles = roles;
-    }
 
     public Staff() {
+    }
+
+    public Staff(String email, String groupName, String company, String name, boolean admin) {
+        this.email = email;
+        this.groupName = groupName;
+        this.company = company;
+        this.name = name;
+        this.admin = admin;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public ArrayList<String> getRoles() {
@@ -70,14 +77,17 @@ public class Staff {
         this.admin = admin;
     }
 
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    @NonNull
     @Override
     public String toString() {
-        return "Staff{" +
-                "email='" + email + '\'' +
-                ", groupName='" + groupName + '\'' +
-                ", contractType='" + contractType + '\'' +
-                ", company='" + company + '\'' +
-                ", admin='" + admin + '\'' +
-                '}';
+        return super.toString();
     }
 }
