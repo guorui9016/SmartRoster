@@ -16,7 +16,5 @@ public class EditStaffActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_staff);
         String jsonData = getIntent().getStringExtra("staff");
         Staff staff = new Gson().fromJson(jsonData, Staff.class);
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(staff.getName());
     }
 }
